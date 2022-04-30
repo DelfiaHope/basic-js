@@ -15,9 +15,44 @@ const { NotImplementedError } = require('../extensions/index.js');
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-function repeater(/* str, options */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function repeater(str, options) {
+  let defRepeatTim = 1,
+     deftSeparat = '+',
+     deftAdd = '',
+     deftAddTimes = 1,
+     deftaddSeparat = '|';
+
+  if(options['repeatTimes']){
+    defRepeatTim = options.repeatTimes
+  }
+  if(options['separator']){
+    deftSeparat = options.separator
+  }
+  if(options['addition'] !== undefined){
+    deftAdd = options.addition + ''
+  }
+  if(options['additionRepeatTimes']){
+    deftAddTimes = options.additionRepeatTimes
+  }
+  if(options['additionSeparator']){
+    deftaddSeparat = options.additionSeparator
+  }
+   console.log(defRepeatTim, deftSeparat, deftAdd, deftAddTimes, deftaddSeparat)
+   const repeat = (string, num, share) =>{
+     let array = [];
+     for(i = 0; i < num; i++){
+       array.push(string)
+     }
+     return array.join(`${share}`)        
+   }
+
+  let addString = repeat(deftAdd, deftAddTimes, deftaddSeparat);
+  console.log(addString)
+  let newStr = str + addString;
+  console.log(newStr)
+  let finish = repeat(newStr, defRepeatTim, deftSeparat)
+  
+  return finish
 }
 
 module.exports = {
